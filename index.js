@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -5,7 +7,6 @@ const userRoutes = require("./routes/user");
 const courseRoutes = require("./routes/course");
 const enrollmentRoutes = require("./routes/enrollment");
 const app = express();
-require('dotenv').config();
 
 
 mongoose.connect(process.env.MONGODB_STRING);
@@ -13,6 +14,7 @@ let db = mongoose.connection
 db.on("error", console.error.bind(console, "connection error"))
 db.once("open", () => console.log("We're connected to the cloud database"))
 
+// console.log("Mongo URI:", process.env.MONGODB_STRING);
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
