@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended:true}));
 //CORS (Cross-Origin Resource Sharing)
 // it allows our backend application to be available to our frontend application
 
-//app.use(cors())
+app.use(cors())
 
 const corsOptions = {
 	origin: ['http://localhost:5173'],
