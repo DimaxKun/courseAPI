@@ -1,7 +1,7 @@
-const Course = require("../models/Course");
+const Course = require("../models/course");
 const { errorHandler } = require('../auth');
-const User = require("../models/User");
-const Enrollment= require("../models/Enrollment");
+const User = require("../models/user");
+const Enrollment= require("../models/enrollment");
 
 
 module.exports.addCourse = (req, res) => {

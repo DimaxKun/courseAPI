@@ -1,6 +1,7 @@
-const User = require('../models/User');
+const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const auth = require("../auth"); 
+const { errorHandler } = require("../auth");
 
 
 module.exports.checkEmailExists = (req, res) => {
@@ -120,6 +121,10 @@ module.exports.resetPassword = async (req, res) => {
     const { newPassword } = req.body;
     const { id } = req.user; // Extracting user ID from the authorization header
 
+    if (!newPassword || newPassword.length < 8) {
+      return res.status(400).json({ message: "Password must be at least 8 characters long" });
+    }
+
     // Hashing the new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
@@ -151,6 +156,11 @@ module.exports.updateProfile = async (req, res) => {
       { new: true }
     );
 
+    if (!updatedUser) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    updatedUser.password = "";
     res.send(updatedUser);
   } catch (error) {
     console.error(error);

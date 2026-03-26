@@ -16,11 +16,9 @@ module.exports.verify = (req, res, next) => {
 	let token = req.headers.authorization;
 
 	if(typeof token === "undefined") {
-		return res.send({ auth: "Failed. No Token"});
+		return res.status(401).send({ auth: "Failed", message: "No token provided" });
 	} else {
-		console.log(token);
 		token = token.slice(7, token.length);
-		console.log(token);
 
 		jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decodedToken) {
 			if(err) {
@@ -29,9 +27,6 @@ module.exports.verify = (req, res, next) => {
 					message: err.message
 				})
 			} else {
-				console.log("result from verify method:")
-				console.log(decodedToken);
-
 				req.user = decodedToken;
 
 				next();

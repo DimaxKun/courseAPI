@@ -8,6 +8,8 @@ const router = express.Router();
 
 
 router.post("/check-email", userController.checkEmailExists);
+// Keep backward compatibility with existing frontend clients.
+router.post("/checkEmail", userController.checkEmailExists);
 
 router.post("/register", userController.registerUser);
 
