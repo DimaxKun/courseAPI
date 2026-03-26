@@ -1,5 +1,5 @@
-const Enrollment = require("../models/enrollment");
-const Course = require("../models/course");
+const Enrollment = require("../models/Enrollment");
+const Course = require("../models/Course");
 const { errorHandler } = require("../auth");
 
 
