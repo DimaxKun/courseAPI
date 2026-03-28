@@ -17,24 +17,20 @@ db.once("open", () => console.log("We're connected to the cloud database"))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-app.use(cors())
+app.use(cors({
+    origin: true,       // allow all origins dynamically
+    credentials: true,  // allow cookies/auth headers
+}));
 
-const corsOptions = {
-	origin: ['http://localhost:5173'],
-	credentials: true, 
-	optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
 
 app.use("/users", userRoutes);
 app.use("/courses", courseRoutes);
 app.use("/enrollments", enrollmentRoutes);
 
 
-if(require.main === module){
-    app.listen(process.env.PORT || 3000, () => 
-    	console.log(`API is now online on port ${process.env.PORT || 3000}`));
-}
+// if(require.main === module){
+//     app.listen(process.env.PORT || 3000, () => 
+//     	console.log(`API is now online on port ${process.env.PORT || 3000}`));
+// }
 
 module.exports = {app,mongoose};

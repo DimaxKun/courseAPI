@@ -1,16 +1,12 @@
 {
-  "name": "capstone2",
+  "name": "Course-Booking",
   "version": "1.0.0",
-  "description": "Ecommerce System MVP requirements",
+  "description": "Course Booking MVP requirements",
   "type": "commonjs",
   "main": "lambda.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@ec2-54-147-90-61.compute-1.amazonaws.com:B598/csp2-b598-baculi-dimacaling.git"
   },
   "keywords": [],
   "author": "",
